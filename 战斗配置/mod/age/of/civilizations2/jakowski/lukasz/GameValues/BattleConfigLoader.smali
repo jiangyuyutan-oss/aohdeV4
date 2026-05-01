@@ -13,54 +13,42 @@
     .registers 14
 
     # ============================================================
-    # Mobile-Safe File Loading (Uses standard Java IO instead of Gdx)
-    # This works in <clinit> where Gdx.files is not yet initialized
+    # Mobile & Desktop Compatible Logic
+    # Using Gdx.files.local -> Android/data/<package>/files/mods/
+    # Using Gdx.files.internal -> APK assets/mods/
     # ============================================================
 
-    # Try Path 1: /sdcard/mods/battle.json
-    const-string v6, "/sdcard/mods/battle.json"
-    new-instance v5, Ljava/io/File;
-    invoke-direct {v5, v6}, Ljava/io/File;-><init>(Ljava/lang/String;)V
-    invoke-virtual {v5}, Ljava/io/File;->exists()Z
-    move-result v7
-    if-eqz v7, :try_path_2
-    goto :load_success
+    :try_start_0
+    # 1. Check if Gdx is initialized (Safety check)
+    sget-object v0, Lcom/badlogic/gdx/Gdx;->files:Lcom/badlogic/gdx/Files;
+    if-eqz v0, :return_early
+    
+    # 2. Try External Storage (Android/data/.../files/mods/battle.json)
+    move-object v5, v0
+    const-string v6, "mods/battle.json"
+    invoke-interface {v5, v6}, Lcom/badlogic/gdx/Files;->local(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
+    move-result-object v4
 
-:try_path_2
-    # Try Path 2: /storage/emulated/0/mods/battle.json
-    const-string v6, "/storage/emulated/0/mods/battle.json"
-    new-instance v5, Ljava/io/File;
-    invoke-direct {v5, v6}, Ljava/io/File;-><init>(Ljava/lang/String;)V
-    invoke-virtual {v5}, Ljava/io/File;->exists()Z
+    invoke-virtual {v4}, Lcom/badlogic/gdx/files/FileHandle;->exists()Z
     move-result v7
     if-eqz v7, :load_success
-    
-    # File not found, return
+
+    # 3. Try Internal Assets (APK assets/mods/battle.json)
+    invoke-interface {v5, v6}, Lcom/badlogic/gdx/Files;->internal(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
+    move-result-object v4
+
+    invoke-virtual {v4}, Lcom/badlogic/gdx/files/FileHandle;->exists()Z
+    move-result v7
+    if-eqz v7, :load_success
+
+    # File not found
     return-void
 
 :load_success
-    # Read file content using Scanner
-    :try_start_read
-    new-instance v4, Ljava/util/Scanner;
-    invoke-direct {v4, v5}, Ljava/util/Scanner;-><init>(Ljava/io/File;)V
-    
-    const-string v6, "\\A"
-    invoke-virtual {v4, v6}, Ljava/util/Scanner;->useDelimiter(Ljava/lang/String;)Ljava/util/Scanner;
-
-    invoke-virtual {v4}, Ljava/util/Scanner;->hasNext()Z
-    move-result v6
-    if-eqz v6, :read_done
-
-    invoke-virtual {v4}, Ljava/util/Scanner;->next()Ljava/lang/String;
-    move-result-object v6
-
-    :read_done
-    invoke-virtual {v4}, Ljava/util/Scanner;->close()V
-
     # Parse JSON
     new-instance v5, Lcom/badlogic/gdx/utils/JsonReader;
     invoke-direct {v5}, Lcom/badlogic/gdx/utils/JsonReader;-><init>()V
-    invoke-virtual {v5, v6}, Lcom/badlogic/gdx/utils/JsonReader;->parse(Ljava/lang/String;)Lcom/badlogic/gdx/utils/JsonValue;
+    invoke-virtual {v5, v4}, Lcom/badlogic/gdx/utils/JsonReader;->parse(Lcom/badlogic/gdx/files/FileHandle;)Lcom/badlogic/gdx/utils/JsonValue;
     move-result-object v2
 
     # ============================================================
@@ -323,9 +311,10 @@
 
     :skip_gv_military
 
-    :try_end_read
-    .catch Ljava/lang/Exception; {:try_start_read .. :try_end_read} :catch_error
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_error
 
+:return_early
     return-void
 
 :catch_error

@@ -1291,7 +1291,9 @@
 
     if-nez v23, :cond_33
 
-    .line 217
+    # MOD FIX: Mobile path - Load Mod Config then return
+    # (Skips heavy JSON loading that causes freezes on mobile)
+    invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/GameValues/BattleConfigLoader;->applyModConfig()V
     return-void
 
     .line 220
