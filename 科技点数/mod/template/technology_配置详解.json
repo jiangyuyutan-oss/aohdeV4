@@ -1,0 +1,99 @@
+{
+    "_说明": "科技研究配置 - Age of History II (文明时代 2) Mod 详细配置",
+    "_使用方法": "复制此文件，删除不需要的行以恢复默认值。放在 APK 的 assets/mods/ 或 Android/data/<包名>/files/mods/ 目录下。",
+
+    // ============================================================
+    // 基础设置
+    // ============================================================
+
+    // 附庸国/被添加国家默认的科技等级 (默认: 45)
+    // 当你通过控制台或外交添加一个新的文明时，它的初始科技等级
+    "ADD_CIV_DEFAULT_TECH_LEVEL": 45,
+
+    // 开启科技研究所需的【最低国库余额】 (默认: -2000)
+    // 负数表示允许负债研发。如果设为 0，则欠债时无法继续研究科技
+    "MIN_MONEY_REQUIRED_TO_ENABLE_RESEARCH": -2000,
+
+    // 科技等级上限 (默认: 3.0)
+    // 注意：此处的数值通常用于内部换算，修改可能影响 UI 显示或计算逻辑
+    "MAX_TECHNOLOGY_LEVEL": 3.0,
+
+    // ============================================================
+    // 省份投资上限与收益 (MAX / PER_POINT)
+    // ============================================================
+    // MAX: 该省份属性最高可以投资多少点
+    // PER_POINT: 每投资 1 点带来的数值提升
+
+    // 【人口增长】 (默认: MAX=35, PER=0.75)
+    // 影响省份人口的自然增长速度
+    "MAX_POINTS_POP_GROWTH": 35,
+    "PER_POINT_POP_GROWTH": 0.75,
+
+    // 【经济增长】 (默认: MAX=35, PER=0.75)
+    // 影响省份经济产值的提升速度
+    "MAX_POINTS_ECONOMY_GROWTH": 35,
+    "PER_POINT_ECONOMY_GROWTH": 0.75,
+
+    // 【税收收入】 (默认: MAX=35, PER=0.2)
+    // 每点投资增加 20% 的税收收益
+    "MAX_POINTS_INCOME_TAXATION": 35,
+    "PER_POINT_INCOME_TAXATION": 0.2,
+
+    // 【生产收入】 (默认: MAX=35, PER=0.25)
+    // 每点投资增加 25% 的生产收益
+    "MAX_POINTS_INCOME_PRODUCTION": 35,
+    "PER_POINT_INCOME_PRODUCTION": 0.25,
+
+    // 【行政效率】 (默认: MAX=35, PER=0.3)
+    // 影响核心化速度和行政上限
+    "MAX_POINTS_ADMINISTRATION": 35,
+    "PER_POINT_ADMINISTRATION": 0.3,
+
+    // 【军事维护】 (默认: MAX=40, PER=0.35)
+    // 降低军队维护费用的消耗，每点减少 35% 的维护费
+    "MAX_POINTS_MILITARY_UPKEEP": 40,
+    "PER_POINT_MILITARY_UPKEEP": 0.35,
+
+    // 【科技研发】 (默认: MAX=50, PER=0.75)
+    // 直接影响科技研究速度，每点增加 75% 的科研速度
+    "MAX_POINTS_RESEARCH": 50,
+    "PER_POINT_RESEARCH": 0.75,
+
+    // 【殖民速度】 (默认: MAX=25, PER=1.0)
+    // 每点增加 100% 的殖民地转化率
+    "MAX_POINTS_COLONIZATION": 25,
+    "PER_POINT_COLONIZATION": 1.0,
+
+    // 【移动速度】 (默认: MAX=35, PER=0.01)
+    // 每点增加 1% 的军队移动力
+    "MAX_POINTS_MOVEMENT": 35,
+    "PER_POINT_MOVEMENT": 0.01,
+
+    // 【同化速度】 (默认: MAX=25, PER=-0.005)
+    // 这里的负值通常代表异文化省份的文化阻力降低速度
+    "MAX_POINTS_ASSIMILATE": 25,
+    "PER_POINT_ASSIMILATE": -0.005,
+
+    // 【征兵上限】 (默认: MAX=25, PER=0.01)
+    // 每点增加 1% 的省份可招募兵员上限
+    "MAX_POINTS_RECRUITABLE": 25,
+    "PER_POINT_RECRUITABLE": 0.01,
+
+    // ============================================================
+    // 外交与科技共享
+    // ============================================================
+
+    // 【共享科技】所需的外交关系点数 (默认: 20)
+    // 两国关系必须达到此值才能互相赠送科技
+    "SHARE_TECHNOLOGY_DIPLOMACY_COST": 20,
+
+    // 点击科技树时每次增加的【研究点数】 (默认: 5)
+    // 如果你想让点击一次加更多点数，可以调大这个值
+    "ADD_TECH_POINTS_PER_CLICK": 5,
+
+    // 每共享 1 级科技带来的【外交关系提升】 (默认: 5.0)
+    "SHARE_TECHNOLOGY_RELATION_INCREASE_PER_TECH_LEVEL": 5.0,
+
+    // 每研发完一项科技，全境省份获得的【幸福度加成】 (默认: 0.01)
+    "TECH_RESEARCHED_HAPPINESS_ALL_PROVINCES_BONUS": 0.01
+}
