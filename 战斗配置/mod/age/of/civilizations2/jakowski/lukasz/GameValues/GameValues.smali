@@ -1222,8 +1222,6 @@
 
     sput v0, Lage/of/civilizations2/jakowski/lukasz/GameValues/GameValues;->DEFAULT_FONT_SIZE:I
 
-    invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/GameValues/BattleConfigLoader;->applyModConfig()V
-
     return-void
 .end method
 
@@ -4776,7 +4774,8 @@
 
     move-result v23
 
-    if-nez v23, :cond_33
+    # MOD FIX: Force load gameValues on mobile too
+    goto :cond_33
 
     .line 667
     return-void

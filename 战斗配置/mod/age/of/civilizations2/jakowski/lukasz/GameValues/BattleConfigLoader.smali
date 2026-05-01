@@ -13,10 +13,14 @@
     .registers 14
 
     :try_start_0
+    # === Check if Gdx is initialized ===
+    sget-object v0, Lcom/badlogic/gdx/Gdx;->files:Lcom/badlogic/gdx/Files;
+    if-eqz v0, :return_early  # If files is null, Gdx is not ready yet
+    
     # Default source for error reporting
     const-string v11, "unknown"
     # === 1. Try local storage first ===
-    sget-object v5, Lcom/badlogic/gdx/Gdx;->files:Lcom/badlogic/gdx/Files;
+    move-object v5, v0
     const-string v6, "mods/battle.json"
     invoke-interface {v5, v6}, Lcom/badlogic/gdx/Files;->local(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
     move-result-object v4
@@ -329,10 +333,16 @@
 
     return-void
 
+:return_early
+    return-void
+
 :no_config
     const-string v6, "BattleConfigLoader"
     const-string v7, "No battle.json found, using game defaults"
     sget-object v8, Lcom/badlogic/gdx/Gdx;->app:Lcom/badlogic/gdx/Application;
+    if-eqz v8, :skip_log
+    goto :return_early
+:skip_log
     invoke-interface {v8, v6, v7}, Lcom/badlogic/gdx/Application;->log(Ljava/lang/String;Ljava/lang/String;)V
     return-void
 
@@ -363,6 +373,10 @@
     move-result-object v13
     
     sget-object v12, Lcom/badlogic/gdx/Gdx;->app:Lcom/badlogic/gdx/Application;
+    if-eqz v12, :log_errors
+    return-void
+
+:log_errors
     invoke-interface {v12, v6, v8}, Lcom/badlogic/gdx/Application;->error(Ljava/lang/String;Ljava/lang/String;)V
     invoke-interface {v12, v6, v9}, Lcom/badlogic/gdx/Application;->error(Ljava/lang/String;Ljava/lang/String;)V
     invoke-interface {v12, v6, v13}, Lcom/badlogic/gdx/Application;->error(Ljava/lang/String;Ljava/lang/String;)V
