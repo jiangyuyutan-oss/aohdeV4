@@ -21,8 +21,10 @@
     :try_start_0
     # 1. Check if Gdx is initialized (Safety check)
     sget-object v0, Lcom/badlogic/gdx/Gdx;->files:Lcom/badlogic/gdx/Files;
-    if-eqz v0, :return_early
-    
+    if-eqz v0, :load_check
+    return-void
+
+    :load_check
     # 2. Try External Storage (Android/data/.../files/mods/battle.json)
     move-object v5, v0
     const-string v6, "mods/battle.json"
