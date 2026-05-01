@@ -12,54 +12,55 @@
 .method public static applyModConfig()V
     .registers 14
 
-    :try_start_0
-    # === Check if Gdx is initialized ===
-    sget-object v0, Lcom/badlogic/gdx/Gdx;->files:Lcom/badlogic/gdx/Files;
-    if-eqz v0, :return_early  # If files is null, Gdx is not ready yet
+    # ============================================================
+    # Mobile-Safe File Loading (Uses standard Java IO instead of Gdx)
+    # This works in <clinit> where Gdx.files is not yet initialized
+    # ============================================================
+
+    # Try Path 1: /sdcard/mods/battle.json
+    const-string v6, "/sdcard/mods/battle.json"
+    new-instance v5, Ljava/io/File;
+    invoke-direct {v5, v6}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    invoke-virtual {v5}, Ljava/io/File;->exists()Z
+    move-result v7
+    if-eqz v7, :try_path_2
+    goto :load_success
+
+:try_path_2
+    # Try Path 2: /storage/emulated/0/mods/battle.json
+    const-string v6, "/storage/emulated/0/mods/battle.json"
+    new-instance v5, Ljava/io/File;
+    invoke-direct {v5, v6}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    invoke-virtual {v5}, Ljava/io/File;->exists()Z
+    move-result v7
+    if-eqz v7, :load_success
     
-    # Default source for error reporting
-    const-string v11, "unknown"
-    # === 1. Try local storage first ===
-    move-object v5, v0
-    const-string v6, "mods/battle.json"
-    invoke-interface {v5, v6}, Lcom/badlogic/gdx/Files;->local(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
-    move-result-object v4
+    # File not found, return
+    return-void
 
-    invoke-virtual {v4}, Lcom/badlogic/gdx/files/FileHandle;->exists()Z
-    move-result v7
-    if-eqz v7, :try_internal
+:load_success
+    # Read file content using Scanner
+    :try_start_read
+    new-instance v4, Ljava/util/Scanner;
+    invoke-direct {v4, v5}, Ljava/util/Scanner;-><init>(Ljava/io/File;)V
+    
+    const-string v6, "\\A"
+    invoke-virtual {v4, v6}, Ljava/util/Scanner;->useDelimiter(Ljava/lang/String;)Ljava/util/Scanner;
 
-    # Local file exists
-    const-string v11, "local"
-    const-string v6, "BattleConfigLoader"
-    const-string v7, "Loading config from local storage"
-    sget-object v8, Lcom/badlogic/gdx/Gdx;->app:Lcom/badlogic/gdx/Application;
-    invoke-interface {v8, v6, v7}, Lcom/badlogic/gdx/Application;->log(Ljava/lang/String;Ljava/lang/String;)V
-    goto :parse
+    invoke-virtual {v4}, Ljava/util/Scanner;->hasNext()Z
+    move-result v6
+    if-eqz v6, :read_done
 
-:try_internal
-    # === 2. Try internal assets ===
-    sget-object v5, Lcom/badlogic/gdx/Gdx;->files:Lcom/badlogic/gdx/Files;
-    const-string v6, "mods/battle.json"
-    invoke-interface {v5, v6}, Lcom/badlogic/gdx/Files;->internal(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
-    move-result-object v4
+    invoke-virtual {v4}, Ljava/util/Scanner;->next()Ljava/lang/String;
+    move-result-object v6
 
-    invoke-virtual {v4}, Lcom/badlogic/gdx/files/FileHandle;->exists()Z
-    move-result v7
-    if-eqz v7, :no_config
+    :read_done
+    invoke-virtual {v4}, Ljava/util/Scanner;->close()V
 
-    # Internal file exists
-    const-string v11, "internal"
-    const-string v6, "BattleConfigLoader"
-    const-string v7, "Loading config from internal assets"
-    sget-object v8, Lcom/badlogic/gdx/Gdx;->app:Lcom/badlogic/gdx/Application;
-    invoke-interface {v8, v6, v7}, Lcom/badlogic/gdx/Application;->log(Ljava/lang/String;Ljava/lang/String;)V
-    goto :parse
-
-    :parse
+    # Parse JSON
     new-instance v5, Lcom/badlogic/gdx/utils/JsonReader;
     invoke-direct {v5}, Lcom/badlogic/gdx/utils/JsonReader;-><init>()V
-    invoke-virtual {v5, v4}, Lcom/badlogic/gdx/utils/JsonReader;->parse(Lcom/badlogic/gdx/files/FileHandle;)Lcom/badlogic/gdx/utils/JsonValue;
+    invoke-virtual {v5, v6}, Lcom/badlogic/gdx/utils/JsonReader;->parse(Ljava/lang/String;)Lcom/badlogic/gdx/utils/JsonValue;
     move-result-object v2
 
     # ============================================================
@@ -322,64 +323,13 @@
 
     :skip_gv_military
 
-    # Config applied successfully
-    const-string v6, "BattleConfigLoader"
-    const-string v7, "Battle config applied successfully"
-    sget-object v8, Lcom/badlogic/gdx/Gdx;->app:Lcom/badlogic/gdx/Application;
-    invoke-interface {v8, v6, v7}, Lcom/badlogic/gdx/Application;->log(Ljava/lang/String;Ljava/lang/String;)V
-
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_read
+    .catch Ljava/lang/Exception; {:try_start_read .. :try_end_read} :catch_error
 
     return-void
 
-:return_early
-    return-void
-
-:no_config
-    const-string v6, "BattleConfigLoader"
-    const-string v7, "No battle.json found, using game defaults"
-    sget-object v8, Lcom/badlogic/gdx/Gdx;->app:Lcom/badlogic/gdx/Application;
-    if-eqz v8, :skip_log
-    goto :return_early
-:skip_log
-    invoke-interface {v8, v6, v7}, Lcom/badlogic/gdx/Application;->log(Ljava/lang/String;Ljava/lang/String;)V
-    return-void
-
-    :catch_0
-    move-exception v5
-    const-string v6, "BattleConfigLoader"
-    
-    new-instance v7, Ljava/lang/StringBuilder;
-    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
-    const-string v8, "Failed to load config from "
-    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    invoke-virtual {v7, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-    move-result-object v8
-    
-    invoke-virtual {v5}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
-    move-result-object v9
-    if-nez v9, :has_msg
-    const-string v9, "Unknown error loading battle config"
-    :has_msg
-    
-    new-instance v10, Ljava/io/StringWriter;
-    invoke-direct {v10}, Ljava/io/StringWriter;-><init>()V
-    new-instance v12, Ljava/io/PrintWriter;
-    invoke-direct {v12, v10}, Ljava/io/PrintWriter;-><init>(Ljava/io/Writer;)V
-    invoke-virtual {v5, v12}, Ljava/lang/Exception;->printStackTrace(Ljava/io/PrintWriter;)V
-    invoke-virtual {v10}, Ljava/io/StringWriter;->toString()Ljava/lang/String;
-    move-result-object v13
-    
-    sget-object v12, Lcom/badlogic/gdx/Gdx;->app:Lcom/badlogic/gdx/Application;
-    if-eqz v12, :log_errors
-    return-void
-
-:log_errors
-    invoke-interface {v12, v6, v8}, Lcom/badlogic/gdx/Application;->error(Ljava/lang/String;Ljava/lang/String;)V
-    invoke-interface {v12, v6, v9}, Lcom/badlogic/gdx/Application;->error(Ljava/lang/String;Ljava/lang/String;)V
-    invoke-interface {v12, v6, v13}, Lcom/badlogic/gdx/Application;->error(Ljava/lang/String;Ljava/lang/String;)V
+:catch_error
+    move-exception v0
     return-void
 
 .end method

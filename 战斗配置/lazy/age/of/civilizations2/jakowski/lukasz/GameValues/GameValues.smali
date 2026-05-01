@@ -1222,6 +1222,9 @@
 
     sput v0, Lage/of/civilizations2/jakowski/lukasz/GameValues/GameValues;->DEFAULT_FONT_SIZE:I
 
+    # MOD INJECTION: Load mod config (Mobile-safe)
+    invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/GameValues/BattleConfigLoader;->applyModConfig()V
+
     return-void
 .end method
 
