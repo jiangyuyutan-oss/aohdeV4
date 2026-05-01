@@ -4774,8 +4774,7 @@
 
     move-result v23
 
-    # MOD FIX: Force load gameValues on mobile too
-    goto :cond_33
+    if-nez v23, :cond_33
 
     .line 667
     return-void
