@@ -76,24 +76,32 @@
     .line 35
     move-object/from16 v0, p0
 
-    move-object/from16 v7, p1
+    move-object/from16 v15, p1
 
-    invoke-super/range {p0 .. p4}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_Game;->drawButtonBGE(Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;IIZ)V
+    move/from16 v2, p2
+
+    move/from16 v3, p3
+
+    move/from16 v4, p4
+
+    const-wide/16 v10, 0x3e8
+
+    invoke-super/range {v0 .. v4}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_Game;->drawButtonBGE(Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;IIZ)V
 
     .line 37
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getIsClickable()Z
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getIsClickable()Z
 
     move-result v1
 
     if-eqz v1, :cond_26a
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getIsHovered()Z
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getIsHovered()Z
 
     move-result v1
 
     if-nez v1, :cond_39
 
-    if-nez p4, :cond_39
+    if-nez v4, :cond_39
 
     sget-object v1, Lage/of/civilizations2/jakowski/lukasz/CFG;->core:Lage/of/civilizations2/jakowski/lukasz/Core/Core;
 
@@ -244,7 +252,7 @@
 
     invoke-direct {v1, v2, v3, v4, v5}, Lcom/badlogic/gdx/graphics/Color;-><init>(FFFF)V
 
-    invoke-virtual {v7, v1}, Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;->setColor(Lcom/badlogic/gdx/graphics/Color;)V
+    invoke-virtual {v15, v1}, Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;->setColor(Lcom/badlogic/gdx/graphics/Color;)V
 
     .line 57
     invoke-static {v9}, Lage/of/civilizations2/jakowski/lukasz/CFG;->setRenderO(Z)V
@@ -256,13 +264,15 @@
 
     move-result-object v1
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosXE()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosXE()I
 
     move-result v2
 
-    add-int v3, v2, p2
+    move/from16 v5, p2
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosY()I
+    add-int v3, v2, v5
+
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosY()I
 
     move-result v2
 
@@ -280,13 +290,15 @@
 
     sub-int/2addr v2, v4
 
-    add-int v4, v2, p3
+    move/from16 v6, p3
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
+    add-int v4, v2, v6
+
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
 
     move-result v5
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getHeightE()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getHeightE()I
 
     move-result v2
 
@@ -349,7 +361,7 @@
 
     iget v6, v6, Lcom/badlogic/gdx/graphics/Color;->b:F
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getIsHovered()Z
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getIsHovered()Z
 
     move-result v12
 
@@ -363,7 +375,7 @@
     :goto_100
     invoke-direct {v1, v4, v5, v6, v2}, Lcom/badlogic/gdx/graphics/Color;-><init>(FFFF)V
 
-    invoke-virtual {v7, v1}, Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;->setColor(Lcom/badlogic/gdx/graphics/Color;)V
+    invoke-virtual {v15, v1}, Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;->setColor(Lcom/badlogic/gdx/graphics/Color;)V
 
     .line 66
     sget v1, Lage/of/civilizations2/jakowski/lukasz/Images;->line32Off1:I
@@ -372,7 +384,7 @@
 
     move-result-object v1
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosXE()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosXE()I
 
     move-result v2
 
@@ -380,9 +392,11 @@
 
     add-int/2addr v2, v3
 
-    add-int v3, v2, p2
+    move/from16 v5, p2
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosY()I
+    add-int v3, v2, v5
+
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosY()I
 
     move-result v2
 
@@ -398,9 +412,11 @@
 
     sub-int/2addr v2, v4
 
-    add-int v4, v2, p3
+    move/from16 v6, p3
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
+    add-int v4, v2, v6
+
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
 
     move-result v2
 
@@ -429,7 +445,7 @@
 
     move-result-object v1
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosXE()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosXE()I
 
     move-result v2
 
@@ -437,13 +453,15 @@
 
     add-int/2addr v2, v3
 
-    add-int v3, v2, p2
+    move/from16 v5, p2
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosY()I
+    add-int v3, v2, v5
+
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosY()I
 
     move-result v2
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getHeightE()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getHeightE()I
 
     move-result v4
 
@@ -463,9 +481,11 @@
 
     sub-int/2addr v2, v4
 
-    add-int v4, v2, p3
+    move/from16 v6, p3
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
+    add-int v4, v2, v6
+
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
 
     move-result v2
 
@@ -553,7 +573,7 @@
 
     iget v6, v6, Lcom/badlogic/gdx/graphics/Color;->b:F
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getIsHovered()Z
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getIsHovered()Z
 
     move-result v13
 
@@ -567,7 +587,7 @@
     :goto_1b0
     invoke-direct {v1, v4, v5, v6, v2}, Lcom/badlogic/gdx/graphics/Color;-><init>(FFFF)V
 
-    invoke-virtual {v7, v1}, Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;->setColor(Lcom/badlogic/gdx/graphics/Color;)V
+    invoke-virtual {v15, v1}, Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;->setColor(Lcom/badlogic/gdx/graphics/Color;)V
 
     .line 78
     sget v1, Lage/of/civilizations2/jakowski/lukasz/Images;->line32Off1:I
@@ -576,7 +596,7 @@
 
     move-result-object v1
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosXE()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosXE()I
 
     move-result v2
 
@@ -584,7 +604,7 @@
 
     add-int/2addr v2, v3
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
 
     move-result v3
 
@@ -602,9 +622,11 @@
 
     add-int/2addr v2, v3
 
-    add-int v3, v2, p2
+    move/from16 v5, p2
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosY()I
+    add-int v3, v2, v5
+
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosY()I
 
     move-result v2
 
@@ -620,9 +642,11 @@
 
     sub-int/2addr v2, v4
 
-    add-int v4, v2, p3
+    move/from16 v6, p3
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
+    add-int v4, v2, v6
+
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
 
     move-result v2
 
@@ -632,7 +656,7 @@
 
     sub-int/2addr v2, v5
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
 
     move-result v5
 
@@ -663,7 +687,7 @@
 
     move-result-object v1
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosXE()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosXE()I
 
     move-result v2
 
@@ -671,7 +695,7 @@
 
     add-int/2addr v2, v3
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
 
     move-result v3
 
@@ -689,13 +713,15 @@
 
     add-int/2addr v2, v3
 
-    add-int v3, v2, p2
+    move/from16 v5, p2
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosY()I
+    add-int v3, v2, v5
+
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosY()I
 
     move-result v2
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getHeightE()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getHeightE()I
 
     move-result v4
 
@@ -715,9 +741,11 @@
 
     sub-int/2addr v2, v4
 
-    add-int v4, v2, p3
+    move/from16 v6, p3
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
+    add-int v4, v2, v6
+
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
 
     move-result v2
 
@@ -727,7 +755,7 @@
 
     sub-int/2addr v2, v5
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
 
     move-result v5
 
@@ -782,11 +810,11 @@
 
     .line 93
     :cond_26a
-    move-object v5, p1
+    move-object/from16 v5, p1
 
-    move v6, p2
+    move/from16 v6, p2
 
-    move v7, p3
+    move/from16 v7, p3
 
     sget v0, Lage/of/civilizations2/jakowski/lukasz/Images;->nextTurnImg:I
 
@@ -802,11 +830,11 @@
 
     move-result v2
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosXE()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosXE()I
 
     move-result v3
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
 
     move-result v4
 
@@ -814,7 +842,7 @@
 
     add-int/2addr v3, v6
 
-    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosY()I
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosY()I
 
     move-result v4
 
