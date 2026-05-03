@@ -22,7 +22,7 @@
 
 # virtual methods
 .method public final getHover_LeaderOfCiv(I)Lage/of/civilizations2/jakowski/lukasz/MenuE_HoverP/ME_Hover_v2;
-    .registers 18
+    .registers 16
     .param p1, "nCivID"  # I
 
     .line 16
@@ -74,34 +74,34 @@
 
     move-result-object v6
 
-    move-object v14, v6
+    move-object v10, v6
 
     invoke-virtual {v6}, Lage/of/civilizations2/jakowski/lukasz/LeaderOfCiv_GameData;->getImage()Ljava/lang/String;
 
     move-result-object v6
 
-    move-object v15, v6
+    move-object v11, v6
 
     sget-object v7, Lage/of/civilizations2/jakowski/lukasz/CFG;->COLOR_TEXT_NUM_OF_PROVINCES:Lcom/badlogic/gdx/graphics/Color;
 
-    invoke-direct {v4, v14, v7}, Lage/of/civilizations2/jakowski/lukasz/MenuE_HoverP/ME_Hover_2Type_Text_Big;-><init>(Ljava/lang/String;Lcom/badlogic/gdx/graphics/Color;)V
+    invoke-direct {v4, v10, v7}, Lage/of/civilizations2/jakowski/lukasz/MenuE_HoverP/ME_Hover_2Type_Text_Big;-><init>(Ljava/lang/String;Lcom/badlogic/gdx/graphics/Color;)V
 
     invoke-interface {v3, v4}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 19
-    if-eqz v15, :cond_8a
+    if-eqz v11, :cond_8a
 
-    invoke-virtual {v15}, Ljava/lang/String;->length()I
+    invoke-virtual {v11}, Ljava/lang/String;->length()I
 
     move-result v7
 
     if-eqz v7, :cond_8a
 
-    const-string v9, ".png"
+    const-string v12, ".png"
 
-    const-string v10, "_SL.png"
+    const-string v13, "_SL.png"
 
-    invoke-virtual {v15, v9, v10}, Ljava/lang/String;->replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+    invoke-virtual {v11, v12, v13}, Ljava/lang/String;->replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
 
     move-result-object v9
 
@@ -109,9 +109,9 @@
 
     invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v11, "game/leadersIMG/"
+    const-string v12, "game/leadersIMG/"
 
-    invoke-virtual {v8, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v8, v12}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v8
 
