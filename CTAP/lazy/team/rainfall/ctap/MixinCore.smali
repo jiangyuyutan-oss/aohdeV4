@@ -95,7 +95,7 @@
 
     move-result v7
 
-    if-eqz v7, :cond_8a
+    if-nez v7, :cond_8a        # 如果名字等于"无"，跳过图片加载
 
     new-instance v8, Ljava/lang/StringBuilder;
 
