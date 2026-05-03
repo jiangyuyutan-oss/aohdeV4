@@ -85,6 +85,8 @@
 
     move-result-object v7
 
+    if-eqz v7, :cond_8a
+
     invoke-virtual {v7}, Ljava/lang/String;->length()I
 
     move-result v8
@@ -136,6 +138,11 @@
 
     move-result v7
 
+    if-gtz v7, :load_image_ok
+
+    goto :cond_8a
+
+    :load_image_ok
     new-instance v8, Lage/of/civilizations2/jakowski/lukasz/MenuE_HoverP/ME_Hover_2Type_Image_Big;
 
     sget v9, Lage/of/civilizations2/jakowski/lukasz/CFG;->PADD:I
