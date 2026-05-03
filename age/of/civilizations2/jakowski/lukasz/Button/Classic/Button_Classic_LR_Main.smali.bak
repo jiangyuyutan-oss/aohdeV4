@@ -49,16 +49,11 @@
     .param p4, "isActive"  # Z
 
     .line 30
-    # 修改：默认按钮颜色改为蓝色调 (R=0.4, G=0.6, B=1.0)
-    const v0, 0x3ecccccd  # 0.4f (Red)
+    const/high16 v0, 0x3f800000  # 1.0f
 
-    const v1, 0x3f19999a  # 0.6f (Green)
+    const v1, 0x3f0ccccd  # 0.55f
 
-    const v2, 0x3f800000  # 1.0f (Blue)
-
-    const v3, 0x3f333333  # 0.7f (Alpha - 更不透明)
-
-    invoke-virtual {p1, v0, v1, v2, v3}, Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;->setColor(FFFF)V
+    invoke-virtual {p1, v0, v0, v0, v1}, Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;->setColor(FFFF)V
 
     .line 32
     invoke-virtual {p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Classic/Button_Classic_LR_Main;->getIsClickable()Z
@@ -70,14 +65,11 @@
     if-nez v1, :cond_61
 
     .line 33
-    # 修改：不可点击按钮颜色改为深蓝色 (R=0.2, G=0.3, B=0.5)
     new-instance v1, Lcom/badlogic/gdx/graphics/Color;
 
-    const v4, 0x3e4ccccd  # 0.2f (Red)
-    const v5, 0x3e99999a  # 0.3f (Green)
-    const v6, 0x3f000000  # 0.5f (Blue)
+    const v3, 0x3ecccccd  # 0.4f
 
-    invoke-direct {v1, v4, v5, v6, v3}, Lcom/badlogic/gdx/graphics/Color;-><init>(FFFF)V
+    invoke-direct {v1, v0, v0, v0, v3}, Lcom/badlogic/gdx/graphics/Color;-><init>(FFFF)V
 
     invoke-virtual {p1, v1}, Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;->setColor(Lcom/badlogic/gdx/graphics/Color;)V
 
@@ -256,15 +248,11 @@
     if-eqz v1, :cond_107
 
     .line 42
-    # 修改：悬停状态改为亮蓝色 (R=0.5, G=0.7, B=1.0, Alpha=0.8)
     new-instance v1, Lcom/badlogic/gdx/graphics/Color;
 
-    const v3, 0x3f000000  # 0.5f (Red)
-    const v4, 0x3f333333  # 0.7f (Green)
-    const v5, 0x3f800000  # 1.0f (Blue)
-    const v6, 0x3f4ccccd  # 0.8f (Alpha)
+    const v3, 0x3ef851ec  # 0.485f
 
-    invoke-direct {v1, v3, v4, v5, v6}, Lcom/badlogic/gdx/graphics/Color;-><init>(FFFF)V
+    invoke-direct {v1, v0, v0, v0, v3}, Lcom/badlogic/gdx/graphics/Color;-><init>(FFFF)V
 
     invoke-virtual {p1, v1}, Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;->setColor(Lcom/badlogic/gdx/graphics/Color;)V
 
