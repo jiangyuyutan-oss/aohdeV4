@@ -753,7 +753,7 @@
     .line 229
     new-instance v9, Lage/of/civilizations2/jakowski/lukasz/Menus/SFX/Menu_InGame_Playlist$9;
 
-    sget v2, Lage/of/civilizations2/jakowski/lukasz/Images;->arrow:I
+    sget v2, Lage/of/civilizations2/jakowski/lukasz/Images;->musicImg:I
 
     sget-object v0, Lage/of/civilizations2/jakowski/lukasz/CFG;->SFXManager:Lage/of/civilizations2/jakowski/lukasz/SFXManager;
 

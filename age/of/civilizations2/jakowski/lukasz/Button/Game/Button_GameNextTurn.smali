@@ -782,6 +782,48 @@
 
     .line 93
     :cond_26a
+    sget v1, Lage/of/civilizations2/jakowski/lukasz/Images;->nextTurnImg:I
+
+    invoke-static {v1}, Lage/of/civilizations2/jakowski/lukasz/IMGManager;->getIMG(I)Lage/of/civilizations2/jakowski/lukasz/Image;
+
+    move-result-object v8
+
+    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosXE()I
+
+    move-result v1
+
+    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
+
+    move-result v2
+
+    add-int/2addr v1, v2
+
+    add-int v9, v1, p2
+
+    invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosY()I
+
+    move-result v1
+
+    invoke-virtual {v8}, Lage/of/civilizations2/jakowski/lukasz/Image;->getHeight()I
+
+    move-result v2
+
+    sub-int/2addr v1, v2
+
+    add-int v10, v1, p3
+
+    invoke-virtual {v8}, Lage/of/civilizations2/jakowski/lukasz/Image;->getWidth()I
+
+    move-result v11
+
+    invoke-virtual {v8}, Lage/of/civilizations2/jakowski/lukasz/Image;->getHeight()I
+
+    move-result v12
+
+    move-object/from16 v7, p1
+
+    invoke-virtual/range {v8 .. v12}, Lage/of/civilizations2/jakowski/lukasz/Image;->drawO(Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;IIII)V
+
     sget-object v1, Lcom/badlogic/gdx/graphics/Color;->WHITE:Lcom/badlogic/gdx/graphics/Color;
 
     invoke-virtual {v7, v1}, Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;->setColor(Lcom/badlogic/gdx/graphics/Color;)V

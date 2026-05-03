@@ -664,6 +664,10 @@
 
 .field public static wonders:I
 
+.field public static musicImg:I
+
+.field public static nextTurnImg:I
+
 
 # direct methods
 .method static constructor <clinit>()V
@@ -698,6 +702,12 @@
     const/16 v0, 0x1e
 
     sput v0, Lage/of/civilizations2/jakowski/lukasz/Images;->SPARKS_SIZE:I
+
+    .line 500
+    sput v0, Lage/of/civilizations2/jakowski/lukasz/Images;->musicImg:I
+
+    .line 501
+    sput v0, Lage/of/civilizations2/jakowski/lukasz/Images;->nextTurnImg:I
 
     return-void
 .end method
@@ -878,5 +888,43 @@
     .line 175
     .end local v0  # "ex":Ljava/lang/Exception;
     :goto_80
+    return-void
+.end method
+
+.method public static getMusicImg()I
+    .registers 1
+
+    .line 505
+    sget v0, Lage/of/civilizations2/jakowski/lukasz/Images;->musicImg:I
+
+    return v0
+.end method
+
+.method public static getNextTurnImg()I
+    .registers 1
+
+    .line 510
+    sget v0, Lage/of/civilizations2/jakowski/lukasz/Images;->nextTurnImg:I
+
+    return v0
+.end method
+
+.method public static setMusicImg(I)V
+    .registers 2
+    .parameter "image"
+
+    .line 515
+    sput p0, Lage/of/civilizations2/jakowski/lukasz/Images;->musicImg:I
+
+    return-void
+.end method
+
+.method public static setNextTurnImg(I)V
+    .registers 2
+    .parameter "image"
+
+    .line 520
+    sput p0, Lage/of/civilizations2/jakowski/lukasz/Images;->nextTurnImg:I
+
     return-void
 .end method
