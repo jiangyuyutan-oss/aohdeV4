@@ -58,8 +58,10 @@
     if-eqz v4, :cond_850
 
     .line 19
+    # Create title text with leader name
     new-instance v4, Lage/of/civilizations2/jakowski/lukasz/MenuE_HoverP/ME_Hover_2Type_Text_Big;
 
+    # Re-fetch leaderData into v6
     sget-object v6, Lage/of/civilizations2/jakowski/lukasz/CFG;->core:Lage/of/civilizations2/jakowski/lukasz/Core/Core;
 
     invoke-virtual {v6, p1}, Lage/of/civilizations2/jakowski/lukasz/Core/Core;->getCiv(I)Lage/of/civilizations2/jakowski/lukasz/Civilization;
@@ -70,25 +72,37 @@
 
     iget-object v6, v6, Lage/of/civilizations2/jakowski/lukasz/Save/Save_Civ_GameData;->leaderData:Lage/of/civilizations2/jakowski/lukasz/LeaderOfCiv_GameData;
 
+    # v14 = leader name (for title display)
     invoke-virtual {v6}, Lage/of/civilizations2/jakowski/lukasz/LeaderOfCiv_GameData;->getName()Ljava/lang/String;
 
     move-result-object v6
 
     move-object v14, v6
 
+    # v15 = image name from getImage() (e.g., "罗斯福.png")
+    invoke-virtual {v6}, Lage/of/civilizations2/jakowski/lukasz/LeaderOfCiv_GameData;->getImage()Ljava/lang/String;
+
+    move-result-object v6
+
+    move-object v15, v6
+
     sget-object v7, Lage/of/civilizations2/jakowski/lukasz/CFG;->COLOR_TEXT_NUM_OF_PROVINCES:Lcom/badlogic/gdx/graphics/Color;
 
-    invoke-direct {v4, v6, v7}, Lage/of/civilizations2/jakowski/lukasz/MenuE_HoverP/ME_Hover_2Type_Text_Big;-><init>(Ljava/lang/String;Lcom/badlogic/gdx/graphics/Color;)V
+    invoke-direct {v4, v14, v7}, Lage/of/civilizations2/jakowski/lukasz/MenuE_HoverP/ME_Hover_2Type_Text_Big;-><init>(Ljava/lang/String;Lcom/badlogic/gdx/graphics/Color;)V
 
     invoke-interface {v3, v4}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 19
-    invoke-virtual {v14}, Ljava/lang/String;->length()I
+    # Check if image name exists and is not empty
+    if-eqz v15, :cond_8a
+
+    invoke-virtual {v15}, Ljava/lang/String;->length()I
 
     move-result v7
 
     if-eqz v7, :cond_8a
 
+    # Build path: "game/leadersIMG/" + image name with _SL suffix
     new-instance v8, Ljava/lang/StringBuilder;
 
     invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
@@ -99,7 +113,16 @@
 
     move-result-object v8
 
-    invoke-virtual {v8, v14}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    # Append image name without .png extension
+    const-string v9, ".png"
+
+    const-string v10, ""
+
+    invoke-virtual {v15, v9, v10}, Ljava/lang/String;->replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+
+    move-result-object v9
+
+    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v8
 
