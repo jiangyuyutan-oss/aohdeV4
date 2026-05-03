@@ -782,47 +782,51 @@
 
     .line 93
     :cond_26a
-    sget v2, Lage/of/civilizations2/jakowski/lukasz/Images;->nextTurnImg:I
+    move-object v5, p1
 
-    invoke-static {v2}, Lage/of/civilizations2/jakowski/lukasz/IMGManager;->getIMG(I)Lage/of/civilizations2/jakowski/lukasz/Image;
+    move v6, p2
 
-    move-result-object v2
+    move v7, p3
 
-    invoke-virtual {v2}, Lage/of/civilizations2/jakowski/lukasz/Image;->getWidth()I
+    sget v0, Lage/of/civilizations2/jakowski/lukasz/Images;->nextTurnImg:I
 
-    move-result v3
+    invoke-static {v0}, Lage/of/civilizations2/jakowski/lukasz/IMGManager;->getIMG(I)Lage/of/civilizations2/jakowski/lukasz/Image;
 
-    invoke-virtual {v2}, Lage/of/civilizations2/jakowski/lukasz/Image;->getHeight()I
+    move-result-object v0
 
-    move-result v4
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Image;->getWidth()I
+
+    move-result v1
+
+    invoke-virtual {v0}, Lage/of/civilizations2/jakowski/lukasz/Image;->getHeight()I
+
+    move-result v2
 
     invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosXE()I
 
-    move-result v5
+    move-result v3
 
     invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getWidthE()I
 
-    move-result v6
+    move-result v4
 
-    add-int/2addr v5, v6
+    add-int/2addr v3, v4
 
-    add-int/2addr v5, p2
+    add-int/2addr v3, v6
 
     invoke-virtual/range {p0 .. p0}, Lage/of/civilizations2/jakowski/lukasz/Button/Game/Button_GameNextTurn;->getPosY()I
 
-    move-result v6
+    move-result v4
 
-    sub-int/2addr v6, v4
+    sub-int/2addr v4, v2
 
-    add-int/2addr v6, p3
+    add-int/2addr v4, v7
 
-    move-object/from16 v7, p1
-
-    invoke-virtual/range {v2 .. v7}, Lage/of/civilizations2/jakowski/lukasz/Image;->drawO(Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;IIII)V
+    invoke-virtual/range {v0 .. v5}, Lage/of/civilizations2/jakowski/lukasz/Image;->drawO(Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;IIII)V
 
     sget-object v1, Lcom/badlogic/gdx/graphics/Color;->WHITE:Lcom/badlogic/gdx/graphics/Color;
 
-    invoke-virtual {v7, v1}, Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;->setColor(Lcom/badlogic/gdx/graphics/Color;)V
+    invoke-virtual {v5, v1}, Lcom/badlogic/gdx/graphics/g2d/SpriteBatch;->setColor(Lcom/badlogic/gdx/graphics/Color;)V
 
     .line 94
     return-void
