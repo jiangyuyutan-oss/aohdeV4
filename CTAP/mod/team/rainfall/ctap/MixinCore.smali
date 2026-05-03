@@ -22,7 +22,7 @@
 
 # virtual methods
 .method public final getHover_LeaderOfCiv(I)Lage/of/civilizations2/jakowski/lukasz/MenuE_HoverP/ME_Hover_v2;
-    .registers 16
+    .registers 18
     .param p1, "nCivID"  # I
 
     .line 16
