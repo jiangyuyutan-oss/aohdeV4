@@ -74,6 +74,8 @@
 
     move-result-object v6
 
+    move-object v10, v6
+
     sget-object v7, Lage/of/civilizations2/jakowski/lukasz/CFG;->COLOR_TEXT_NUM_OF_PROVINCES:Lcom/badlogic/gdx/graphics/Color;
 
     invoke-direct {v4, v6, v7}, Lage/of/civilizations2/jakowski/lukasz/MenuE_HoverP/ME_Hover_2Type_Text_Big;-><init>(Ljava/lang/String;Lcom/badlogic/gdx/graphics/Color;)V
@@ -81,46 +83,31 @@
     invoke-interface {v3, v4}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 19
-    invoke-virtual {v6}, Lage/of/civilizations2/jakowski/lukasz/LeaderOfCiv_GameData;->getImage()Ljava/lang/String;
+    invoke-virtual {v10}, Ljava/lang/String;->length()I
 
-    move-result-object v7
+    move-result v7
 
     if-eqz v7, :cond_8a
 
-    invoke-virtual {v7}, Ljava/lang/String;->length()I
+    const-string v7, "无"
 
-    move-result v8
+    invoke-virtual {v10, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    if-eqz v8, :cond_8a
+    move-result v7
 
-    const/16 v8, 0x2e
+    if-eqz v7, :cond_8a
 
-    invoke-virtual {v7, v8}, Ljava/lang/String;->lastIndexOf(I)I
-
-    move-result v8
-
-    const/4 v9, -0x1
-
-    if-eq v8, v9, :cond_89
-
-    const/4 v9, 0x0
-
-    invoke-virtual {v7, v9, v8}, Ljava/lang/String;->substring(II)Ljava/lang/String;
-
-    move-result-object v7
-
-    :cond_89
     new-instance v8, Ljava/lang/StringBuilder;
 
     invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v9, "assets/game/leadersIMG/"
+    const-string v9, "game/leadersIMG/"
 
     invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v8
 
-    invoke-virtual {v8, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v8, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v8
 
