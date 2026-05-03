@@ -89,14 +89,6 @@
 
     if-eqz v7, :cond_8a
 
-    const-string v7, "无"
-
-    invoke-virtual {v10, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v7
-
-    if-nez v7, :cond_8a        # 如果名字等于"无"，跳过图片加载
-
     new-instance v8, Ljava/lang/StringBuilder;
 
     invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
