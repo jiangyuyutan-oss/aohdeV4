@@ -74,7 +74,7 @@
 
     move-result-object v6
 
-    move-object v10, v6
+    move-object v14, v6
 
     sget-object v7, Lage/of/civilizations2/jakowski/lukasz/CFG;->COLOR_TEXT_NUM_OF_PROVINCES:Lcom/badlogic/gdx/graphics/Color;
 
@@ -83,7 +83,7 @@
     invoke-interface {v3, v4}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 19
-    invoke-virtual {v10}, Ljava/lang/String;->length()I
+    invoke-virtual {v14}, Ljava/lang/String;->length()I
 
     move-result v7
 
@@ -99,7 +99,7 @@
 
     move-result-object v8
 
-    invoke-virtual {v8, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v8, v14}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v8
 
