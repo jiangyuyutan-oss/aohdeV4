@@ -682,12 +682,6 @@
     invoke-virtual {v2}, Lage/of/civilizations2/jakowski/lukasz/MapCoords;->updateMapPos()V
 
     .line 294
-    invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/CFG;->getIsDesktop()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_cc
-
     const-string v2, "game/gameValues/ENDA.txt"
 
     invoke-static {v2}, Lage/of/civilizations2/jakowski/lukasz/Files/FileManager;->loadFile(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
@@ -705,12 +699,6 @@
 
     .line 298
     :cond_cc
-    invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/CFG;->getIsDesktop()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_f4
-
     const-string v2, "UI/paddingEdge.txt"
 
     invoke-static {v2}, Lage/of/civilizations2/jakowski/lukasz/Files/FileManager;->loadFile(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
@@ -767,12 +755,6 @@
     .end local v2  # "e":Ljava/lang/Exception;
     :cond_f4
     :goto_f4
-    invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/CFG;->getIsDesktop()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_10e
-
     const-string v2, "game/gameValues/ORHS.txt"
 
     invoke-static {v2}, Lage/of/civilizations2/jakowski/lukasz/Files/FileManager;->loadFile(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
@@ -1612,12 +1594,6 @@
     invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/Z_Other/PNM;->uDPN()V
 
     .line 448
-    invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/CFG;->getIsDesktop()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_3b8
-
     const-string v2, "game/gameValues/EAPWS.txt"
 
     invoke-static {v2}, Lage/of/civilizations2/jakowski/lukasz/Files/FileManager;->loadFile(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
@@ -1637,12 +1613,6 @@
 
     .line 452
     :cond_3b8
-    invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/CFG;->getIsDesktop()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_3cd
-
     const-string v2, "game/gameValues/EACDG.txt"
 
     invoke-static {v2}, Lage/of/civilizations2/jakowski/lukasz/Files/FileManager;->loadFile(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
@@ -1662,12 +1632,6 @@
 
     .line 457
     :cond_3cd
-    invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/CFG;->getIsDesktop()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_3e2
-
     const-string v2, "game/gameValues/DJE.txt"
 
     invoke-static {v2}, Lage/of/civilizations2/jakowski/lukasz/Files/FileManager;->loadFile(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
@@ -2244,12 +2208,6 @@
     invoke-virtual {v2}, Lage/of/civilizations2/jakowski/lukasz/Clouds/CloudsManager;->updateCloudsInterface()V
 
     .line 499
-    invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/CFG;->getIsDesktop()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_60d
-
     const-string v2, "game/gameValues/UCSH.txt"
 
     invoke-static {v2}, Lage/of/civilizations2/jakowski/lukasz/Files/FileManager;->loadFile(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
@@ -4473,12 +4431,6 @@
     sput v2, Lage/of/civilizations2/jakowski/lukasz/Images;->line32Vertical:I
 
     .line 625
-    invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/CFG;->getIsDesktop()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_e70
-
     const-string v2, "game/gameValues/SANDISINF.txt"
 
     invoke-static {v2}, Lage/of/civilizations2/jakowski/lukasz/Files/FileManager;->loadFile(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
@@ -5945,12 +5897,6 @@
     sput v2, Lage/of/civilizations2/jakowski/lukasz/Images;->flagCircleShader:I
 
     .line 696
-    invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/CFG;->getIsDesktop()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_1419
-
     const-string v2, "game/gameValues/TDSX.txt"
 
     invoke-static {v2}, Lage/of/civilizations2/jakowski/lukasz/Files/FileManager;->loadFile(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
@@ -13150,13 +13096,8 @@
 
     sput v2, Lage/of/civilizations2/jakowski/lukasz/Images;->nextTurnImg:I
 
+
     .line 1099
-    invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/CFG;->getIsDesktop()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_2ef4
-
     const-string v2, "game/gameValues/WVFAL.txt"
 
     invoke-static {v2}, Lage/of/civilizations2/jakowski/lukasz/Files/FileManager;->loadFile(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
@@ -13961,12 +13902,6 @@
     sput-object v2, Lage/of/civilizations2/jakowski/lukasz/CFG;->serviceRibbonMgr:Lage/of/civilizations2/jakowski/lukasz/ServiceRibbon_Manager;
 
     .line 1165
-    invoke-static {}, Lage/of/civilizations2/jakowski/lukasz/CFG;->getIsDesktop()Z
-
-    move-result v2
-
-    if-eqz v2, :cond_31e6
-
     const-string v2, "game/gameValues/GLDRCA.txt"
 
     invoke-static {v2}, Lage/of/civilizations2/jakowski/lukasz/Files/FileManager;->loadFile(Ljava/lang/String;)Lcom/badlogic/gdx/files/FileHandle;
