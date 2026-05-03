@@ -911,7 +911,6 @@
 
 .method public static setMusicImg(I)V
     .registers 2
-    .parameter "image"
 
     .line 515
     sput p0, Lage/of/civilizations2/jakowski/lukasz/Images;->musicImg:I
@@ -921,7 +920,6 @@
 
 .method public static setNextTurnImg(I)V
     .registers 2
-    .parameter "image"
 
     .line 520
     sput p0, Lage/of/civilizations2/jakowski/lukasz/Images;->nextTurnImg:I
