@@ -666,8 +666,6 @@
 
 .field public static musicImg:I
 
-.field public static nextTurnImg:I
-
 
 # direct methods
 .method static constructor <clinit>()V
@@ -705,9 +703,6 @@
 
     .line 500
     sput v0, Lage/of/civilizations2/jakowski/lukasz/Images;->musicImg:I
-
-    .line 501
-    sput v0, Lage/of/civilizations2/jakowski/lukasz/Images;->nextTurnImg:I
 
     return-void
 .end method
@@ -900,29 +895,11 @@
     return v0
 .end method
 
-.method public static getNextTurnImg()I
-    .registers 1
-
-    .line 510
-    sget v0, Lage/of/civilizations2/jakowski/lukasz/Images;->nextTurnImg:I
-
-    return v0
-.end method
-
 .method public static setMusicImg(I)V
     .registers 2
 
     .line 515
     sput p0, Lage/of/civilizations2/jakowski/lukasz/Images;->musicImg:I
-
-    return-void
-.end method
-
-.method public static setNextTurnImg(I)V
-    .registers 2
-
-    .line 520
-    sput p0, Lage/of/civilizations2/jakowski/lukasz/Images;->nextTurnImg:I
 
     return-void
 .end method
